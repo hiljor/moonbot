@@ -1,3 +1,6 @@
+# private bot key
+TOKEN
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
