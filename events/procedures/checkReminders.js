@@ -26,7 +26,7 @@ module.exports = {
             const remindersToRemove = [];
         
             for (const reminder of reminders) {
-                if (reminder.reminderTime < Date.now()) {
+                if (reminder.reminderTime < Date.now() / 1000) {
                     await sendReminder(reminder);
                     remindersToRemove.push(reminder);
                 }
