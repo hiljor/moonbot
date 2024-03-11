@@ -6,7 +6,7 @@ module.exports = {
 		if (!interaction.isChatInputCommand()) return;
 
 		const command = interaction.client.commands.get(interaction.commandName);
-
+		console.log(`Command ${interaction.commandName} was executed by ${interaction.user.tag}.`);
 		if (!command) {
 			console.error(`No command matching ${interaction.commandName} was found.`);
 			return;
@@ -36,6 +36,7 @@ module.exports = {
 		setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
 		try {
+			console.log(`Executing command ${command.data.name}.`);
 			await command.execute(interaction);
 		} catch (error) {
 			console.error(error);
