@@ -97,7 +97,7 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand
                 .setName('remove')
-                .setDescription('Remove a reminder')
+                .setDescription('Remove a reminder that you created or that is for you')
         ),
     async execute(interaction) {
         if (interaction.options.getSubcommand() === 'set') {
@@ -122,10 +122,12 @@ module.exports = {
             const reminderData = {
                 id: Math.random().toString(36).substring(7),
                 userId: userToNotify.id,
+                username: userToNotify.tag,
                 channelId: interaction.channel.id,
                 message: reminderMessage,
                 reminderTime: reminderTime,
                 author: interaction.user.id,
+                timezone: timezone,
             };
 
             // Save the reminderData object to a database or file for later use
@@ -149,7 +151,7 @@ module.exports = {
             const remindersPath = path.join(__dirname, '/../../data/reminders.json');
             const reminders = readRemindersFromFile(remindersPath);
 
-            const userReminders = reminders.filter(reminder => reminder.userId === userToCheck.id);
+            const userReminders = reminders.filter(reminder => (reminder.userId === userToCheck.id));
 
             if (userReminders.length === 0) {
                 return interaction.reply('No reminders found for this user.', { ephemeral: true });
@@ -192,18 +194,24 @@ module.exports = {
                 return interaction.reply('No reminders found.', { ephemeral: true });
             }
 
-            const userReminders = reminders.filter(reminder => reminder.userId === interaction.user.id);
+            const userReminders = reminders.filter(reminder => 
+                (reminder.userId === interaction.user.id) 
+                || 
+                (reminder.author === interaction.user.id));
 
             if (userReminders.length === 0) {
-                return interaction.reply('No reminders found for this user.', { ephemeral: true });
+                return interaction.reply('No reminders found that are for you or written by you.', { ephemeral: true });
             }
 
             const reminderOptions = userReminders.map(reminder => {
-                const formattedReminderTime = `<t:${reminder.reminderTime}:f>`;
+                const formattedReminderTime = moment.tz(reminder.reminderTime * 1000, reminder.timezone).format('YYYY-MM-DD HH:mm');
+                const includedMessage = reminder.message.length > 50 ? `${reminder.message.substring(0, 50)}...` : reminder.message;
+                const receiver = reminder.userId === interaction.user.id ? 'you' : `${reminder.username}`;
+                const description = `Time: ${formattedReminderTime} in ${reminder.timezone} | For: ${receiver}`;
                 return new StringSelectMenuOptionBuilder()
-                    .setLabel(formattedReminderTime)
+                    .setLabel(includedMessage)
                     .setValue(reminder.id)
-                    .setDescription(reminder.message);
+                    .setDescription(description);
             });
 
             const selectMenu = new StringSelectMenuBuilder()

@@ -1,26 +1,22 @@
 [
   {
-    "id": "zb7gcq",
+    "id": "4skec",
+    "userId": "228244855577509888",
+    "username": "testing",
+    "channelId": "888044349038940252",
+    "message": "it is later than late",
+    "reminderTime": 1710266411,
+    "author": "228244855577509888",
+    "timezone": "Europe/Oslo"
+  },
+  {
+    "id": "8jcghn",
     "userId": "1213923898027020328",
-    "channelId": "1216841077282050088",
-    "message": "This is 23:10 in Halifax for moonbot",
-    "reminderTime": 1710209403,
-    "author": "228244855577509888"
-  },
-  {
-    "id": "psvslp",
-    "userId": "228244855577509888",
-    "channelId": "1216841077282050088",
-    "message": "this is 11 am",
-    "reminderTime": 1710237652,
-    "author": "228244855577509888"
-  },
-  {
-    "id": "knzns",
-    "userId": "228244855577509888",
-    "channelId": "1216841077282050088",
-    "message": "this is 12 pm",
-    "reminderTime": 1710241201,
-    "author": "228244855577509888"
+    "username": "testing",
+    "channelId": "888044349038940252",
+    "message": "bot time!",
+    "reminderTime": 1710261035,
+    "author": "228244855577509888",
+    "timezone": "Europe/Amsterdam"
   }
 ]
