@@ -24,12 +24,28 @@ for (const folder of commandFolders) {
 	}
 }
 
+// Find event files
 const eventsPath = path.join(__dirname, 'events');
-const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+
+function readFilesRecursively(directory) {
+    const files = [];
+
+    fs.readdirSync(directory).forEach(file => {
+        const fullPath = path.join(directory, file);
+        if (fs.statSync(fullPath).isDirectory()) {
+            files.push(...readFilesRecursively(fullPath));
+        } else if (file.endsWith('.js')) {
+            files.push(fullPath);
+        }
+    });
+
+    return files;
+}
+
+const eventPaths = readFilesRecursively(eventsPath);
 
 // Load all events
-for (const file of eventFiles) {
-	const filePath = path.join(eventsPath, file);
+for (const filePath of eventPaths) {
 	const event = require(filePath);
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args));
