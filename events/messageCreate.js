@@ -10,8 +10,6 @@ module.exports = {
 		const botMention = message.mentions.users.has(message.client.user.id);
 		if (botMention) {
 			console.log('Bot was mentioned with a message:', message.content);
-			console.log(greetings);
-			console.log(answers);
 			// Check if the message contains a greeting
 			if (greetings.some(greeting => message.content.toLowerCase().includes(greeting))) {
 				// Reply with a random greeting from the greetings data
