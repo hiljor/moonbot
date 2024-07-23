@@ -40,6 +40,5 @@ module.exports = {
             fs.writeFileSync(reminderPath, JSON.stringify(reminders, null, 2));
         
         }
-        console.log('Reminders checked.');
     },
 };
