@@ -10,19 +10,22 @@ module.exports = {
 		const botMention = message.mentions.users.has(message.client.user.id);
 		if (botMention) {
 			console.log('Bot was mentioned with a message:', message.content);
-			// Check if the message contains a greeting
-			if (greetings.some(greeting => message.content.toLowerCase().includes(greeting))) {
-				// Reply with a random greeting from the greetings data
-				let response = greetings[Math.floor(Math.random() * greetings.length)];
-				// Make first letter capitalised at random
-				response = Math.random() > 0.5 ? response.charAt(0).toUpperCase() + response.slice(1) : response;
-			}
+
 			// Check if the message contains a question mark
-			else if (message.content.includes('?')) {
+			if (message.content.includes('?')) {
 				// Get a random answer from the 8ball data
 				const answer = answers[Math.floor(Math.random() * answers.length)];
 				message.reply(answer);
 			}
+			// Check if the message contains a greeting
+			else if (greetings.some(greeting => message.content.toLowerCase().includes(greeting))) {
+				// Reply with a random greeting from the greetings data
+				let response = greetings[Math.floor(Math.random() * greetings.length)];
+				// Make first letter capitalised at random
+				response = Math.random() > 0.5 ? response.charAt(0).toUpperCase() + response.slice(1) : response;
+				message.reply(response)
+			}
+
 		}
 	},
 };
