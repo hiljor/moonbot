@@ -16,7 +16,7 @@ module.exports = {
     category: 'utility',
     data: new SlashCommandBuilder()
         .setName('hammertime')
-        .setDescription('Format a timestamp.')
+        .setDescription('Format a timestamp. (Still in development)')
         .addStringOption(option =>
             option
                 .setName('time')
