@@ -1,0 +1,53 @@
+{
+    "trips": [
+      {
+        "tripId": "0",
+        "destination": "Destination Name",
+        "startDate": "YYYY-MM-DD",
+        "endDate": "YYYY-MM-DD",
+        "participants": [
+          {
+            "name": "Person One",
+            "flightDetails": {
+              "arrival": {
+                "flightNumber": "XYZ123",
+                "departureTime": "YYYY-MM-DDTHH:MM",
+                "arrivalTime": "YYYY-MM-DDTHH:MM"
+              },
+              "departure": {
+                "flightNumber": "XYZ456",
+                "departureTime": "YYYY-MM-DDTHH:MM",
+                "arrivalTime": "YYYY-MM-DDTHH:MM"
+              }
+            }
+          },
+          {
+            "name": "Person Two",
+            "flightDetails": {
+              "arrival": {
+                "flightNumber": "XYZ789",
+                "departureTime": "YYYY-MM-DDTHH:MM",
+                "arrivalTime": "YYYY-MM-DDTHH:MM"
+              },
+              "departure": {
+                "flightNumber": "XYZ101",
+                "departureTime": "YYYY-MM-DDTHH:MM",
+                "arrivalTime": "YYYY-MM-DDTHH:MM"
+              }
+            }
+          }
+        ],
+        "infoBoard": {
+          "notes": [
+            "Remember to book restaurants in advance.",
+            "Check the weather a day before travel."
+          ],
+          "itinerary": [
+            "Day 1: Arrival and check-in.",
+            "Day 2: Beach day.",
+            "Day 3: City tour."
+          ]
+        }
+      }
+    ]
+  }
